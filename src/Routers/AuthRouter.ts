@@ -1,8 +1,16 @@
 import { Router } from "express";
-import { authService } from "../Services/AuthService";
+import {
+  signup,
+  getUsers,
+  signin,
+  refreshToken,
+} from "../Services/AuthService";
 
 const router = Router();
 
-router.use("/auth", authService);
+router.post("/signup", signup);
+router.get("/users", getUsers);
+router.post("/signin", signin);
+router.post("/signin/new_token", refreshToken);
 
 export { router as AuthRouter };
