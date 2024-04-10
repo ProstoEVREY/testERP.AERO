@@ -19,3 +19,15 @@ model User {
   id       String @unique
   password String
 }
+
+model Token {
+  id       Int    @id @default(autoincrement())
+  tokenstr String @db.VarChar(512)
+  userId   String
+}
+
+model InvalidatedToken {
+  id       Int    @id @default(autoincrement())
+  tokenstr String @db.VarChar(512)
+  userId   String
+}

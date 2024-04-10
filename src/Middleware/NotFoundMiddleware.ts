@@ -6,5 +6,4 @@ export const NotFoundMiddleware = (
   next: NextFunction,
 ) => {
   res.status(404).send("404. Sorry can't find that!");
-  next();
 };

@@ -1,15 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import jwt from "jsonwebtoken";
-const secret = process.env.JWT_SECRET_KEY ?? "DEFAULT";
 
-interface CustomRequest extends Request {
-  user?: any;
-}
+import { prisma } from "../..";
 
-// Middleware for token authentication
+// Middleware for checking Invalidated Tokens
 
-export const AuthMiddleware = (
-  req: CustomRequest,
+export const InvalidatedMiddleware = async (
+  req: Request,
   res: Response,
   next: NextFunction,
 ) => {
@@ -27,15 +23,15 @@ export const AuthMiddleware = (
       .status(400)
       .json({ message: "The token is not an access token or is invalid" });
   }
-
-  jwt.verify(tokenBody, secret, (err, decoded) => {
-    if (err) {
-      return res
-        .status(403)
-        .json({ message: "Failed to authenticate token. Forbidden" });
-    }
-
-    req.user = decoded;
-    next();
+  const potentialToken = await prisma.invalidatedToken.findFirst({
+    where: {
+      tokenstr: token,
+    },
   });
+
+  if (potentialToken) {
+    return res.status(400).json({ message: "Token in invalidated. Forbidden" });
+  }
+
+  next();
 };
