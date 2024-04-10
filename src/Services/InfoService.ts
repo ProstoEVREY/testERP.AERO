@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { generateJWT } from "../Util/JWTGeneration";
 import jwt from "jsonwebtoken";
 
 export const infoService = (req: Request, res: Response) => {
