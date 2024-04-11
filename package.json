@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon || exit 1",
-    "start": "npx tsc &&  node /dist/index.js"
+    "start": "npx tsc &&  node ./dist/index.js"
   },
   "author": "Dmitriy Katkov",
   "license": "ISC",
