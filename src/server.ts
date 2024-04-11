@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import path from "path";
 import cors from "cors";
 import cron from "node-cron";
+import fileupload from "express-fileupload";
 
 import { InfoRouter } from "./Routers/InfoRouter";
 import { LatencyRouter } from "./Routers/LatencyRouter";
@@ -18,6 +19,7 @@ import { InvalidatedMiddleware } from "./Middleware/InvalidatedMiddleware";
 const app = express();
 
 app.use(cors());
+app.use(fileupload());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

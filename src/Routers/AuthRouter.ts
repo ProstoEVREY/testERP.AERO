@@ -1,11 +1,5 @@
 import { Router } from "express";
-import {
-  signup,
-  getUsers,
-  signin,
-  refreshToken,
-  logout,
-} from "../Services/AuthService";
+import { signup, signin, refreshToken, logout } from "../Services/AuthService";
 import { AuthMiddleware } from "../Middleware/AuthMiddleware";
 import { InvalidatedMiddleware } from "../Middleware/InvalidatedMiddleware";
 import { validate } from "../Middleware/RegexMiddleware";
@@ -13,7 +7,6 @@ import { validate } from "../Middleware/RegexMiddleware";
 const router = Router();
 
 router.post("/signup", validate, signup);
-router.get("/users", getUsers);
 router.post("/signin", signin);
 router.post("/signin/new_token", refreshToken);
 router.get("/logout", AuthMiddleware, InvalidatedMiddleware, logout);

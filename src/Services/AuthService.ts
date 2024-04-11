@@ -100,15 +100,6 @@ export const signin = async (req: Request, res: Response) => {
   }
 };
 
-export const getUsers = async (req: Request, res: Response) => {
-  try {
-    const users = await prisma.user.findMany();
-    return res.send(users);
-  } catch (e) {
-    console.error(e);
-  }
-};
-
 export const refreshToken = async (req: Request, res: Response) => {
   try {
     const token = req.headers.authorization;

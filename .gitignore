@@ -4,3 +4,4 @@
 nodemon.json
 package-lock.json
 TODO
+/uploads/*
